@@ -5,6 +5,7 @@
                 <video #videoPlayer width="640" height="360" (waiting)="onWaiting()" (playing)="onPlaying()">
                     <source src="{{videoUrl}}" type="video/mp4"/>
                 </video>
+                <input #videoSeeker type="range" min="0" [max]="videoDuration" step="0.01" (input)="seekVideo()" [(ngModel)]="currentVideoTime">
                 <div *ngIf="isLoading">
                     <div class="loader"></div>
                 </div>

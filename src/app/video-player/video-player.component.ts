@@ -63,6 +63,28 @@ export class VideoPlayerComponent {
   onPlaying(){
     this.isLoading = false;
   }
+
+  @ViewChild('videoSeeker', { static: false }) videoSeeker ?: ElementRef;
+  videoDuration : number = 0;
+  currentVideoTime : number = 0;
+
+  ngAfterViewInit() {
+    if(this.videoPlayer){
+      const video: HTMLVideoElement = this.videoPlayer.nativeElement;
+      video.onloadedmetadata = () => {
+        this.videoDuration = video.duration;
+      };
+      video.ontimeupdate = () => {
+        this.currentVideoTime = video.currentTime;
+      };
+    }
+  }
+
+  seekVideo(){
+    if(this.videoPlayer && this.videoSeeker){
+      const video: HTMLVideoElement = this.videoPlayer.nativeElement;
+      const seeker: HTMLInputElement = this.videoSeeker.nativeElement;
+      video.currentTime = seeker.valueAsNumber;
+    }
+  }
 }
-
-
