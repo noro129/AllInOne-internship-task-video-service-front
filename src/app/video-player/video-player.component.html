@@ -1,15 +1,25 @@
 <div class="videoContainer">
     <div class="Content">
         <div class="videoContent" *ngIf="videoReady">
-            <video #videoPlayer width="640" height="360" (loadeddata)="onLoadedData()">
-                <source src="{{videoUrl}}" type="video/mp4"/>
-            </video>
-            <a [href]="videoUrl" download>
-                <button>Download</button>
-            </a>
-            <button (click)="playPauseClicked()">{{ isPlaying? 'Pause' : 'Play'}}</button>
-            <button (click)="skipBackward(-10)">Backward</button>
-            <button (click)="skipForward(10)">Forward</button>
+            <div class="videoLoaderContent">
+                <video #videoPlayer width="640" height="360" (waiting)="onWaiting()" (playing)="onPlaying()">
+                    <source src="{{videoUrl}}" type="video/mp4"/>
+                </video>
+                <div *ngIf="isLoading">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <div class="buttons">
+                <a [href]="videoUrl" download class="download">
+                    <button><img src="assets/download.png" alt="download"/></button>
+                </a>
+                <button (click)="skipBackward(-10)"><img src="assets/backward.png" alt="skip backward"/></button>
+                <button (click)="playPauseClicked()">
+                    <img *ngIf="isPlaying" src="assets/pause.png" alt="pause"/>
+                    <img *ngIf="!isPlaying" src="assets/play.png" alt="play"/>
+                </button>
+                <button (click)="skipForward(10)"><img src="assets/forward.png" alt="skip forward"/></button>
+            </div>
         </div>
 
         <div *ngIf="!videoReady">

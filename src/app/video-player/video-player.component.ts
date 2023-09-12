@@ -3,7 +3,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-video-player',
   templateUrl: './video-player.component.html',
-  styleUrls: ['./video-player.component.sass']
+  styleUrls: ['./video-player.component.scss']
 })
 export class VideoPlayerComponent {
 
@@ -13,6 +13,7 @@ export class VideoPlayerComponent {
   isPlaying : boolean = false;
   videoUrl : string = "assets/Videos/1000.mp4";
   videoId : string = "1000";
+  isLoading : boolean = false;
 
 
   getVideoPhase(videoId : string) : string{
@@ -55,7 +56,13 @@ export class VideoPlayerComponent {
     }
   }
 
-  onLoadedData(){
-
+  onWaiting(){
+    this.isLoading = true;
+  }
+  
+  onPlaying(){
+    this.isLoading = false;
   }
 }
+
+
