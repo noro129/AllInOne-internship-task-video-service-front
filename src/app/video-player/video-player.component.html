@@ -1,0 +1,19 @@
+<div class="videoContainer">
+    <div class="Content">
+        <div class="videoContent" *ngIf="videoReady">
+            <video #videoPlayer width="640" height="360" (loadeddata)="onLoadedData()">
+                <source src="{{videoUrl}}" type="video/mp4"/>
+            </video>
+            <a [href]="videoUrl" download>
+                <button>Download</button>
+            </a>
+            <button (click)="playPauseClicked()">{{ isPlaying? 'Pause' : 'Play'}}</button>
+            <button (click)="skipBackward(-10)">Backward</button>
+            <button (click)="skipForward(10)">Forward</button>
+        </div>
+
+        <div *ngIf="!videoReady">
+            <h1>Video creation reached phase {{ getVideoPhase(videoId) }}</h1>
+        </div>
+    </div>
+</div>
