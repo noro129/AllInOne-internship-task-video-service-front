@@ -8,12 +8,15 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class VideoPlayerComponent {
 
   @ViewChild('videoPlayer', { static: false }) videoPlayer ?: ElementRef;
+  @ViewChild('videoVolume', { static: false }) videoVolume ?: ElementRef;
 
   videoReady : boolean = true;
   isPlaying : boolean = false;
   videoUrl : string = "assets/Videos/1000.mp4";
   videoId : string = "1000";
   isLoading : boolean = false;
+  isMuted : boolean = false;
+  currentVolume : number = 1;
 
 
   getVideoPhase(videoId : string) : string{
@@ -86,5 +89,25 @@ export class VideoPlayerComponent {
       const seeker: HTMLInputElement = this.videoSeeker.nativeElement;
       video.currentTime = seeker.valueAsNumber;
     }
+  }
+
+  toggleMute(){
+    if(this.videoPlayer){
+        const video: HTMLVideoElement = this.videoPlayer.nativeElement;
+        if (this.isMuted) {
+            video.muted = false;
+        } else {
+            video.muted = true;
+        }
+        this.isMuted = !this.isMuted;
+    }
+  }
+
+  changeVolume(){
+      if(this.videoPlayer && this.videoVolume){
+          const video: HTMLVideoElement = this.videoPlayer.nativeElement;
+          const volume: HTMLInputElement = this.videoVolume.nativeElement;
+          video.volume = volume.valueAsNumber;
+      }
   }
 }
