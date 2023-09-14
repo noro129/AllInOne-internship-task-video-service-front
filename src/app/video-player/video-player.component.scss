@@ -119,13 +119,15 @@
                         position: absolute;
                         width: 90%;
                         z-index: 3;
-                        height: 3px;
+                        height: 2px;
                         border-radius: 10px;
-                        top: calc( 50% - 1.5px );
+                        top: calc( 50% - 1px );
                         left: 0;
                         transform: rotateZ(40deg) scaleX(0);
                         transition: transform .2s ease;
-                        background-color: white;
+                        background-color: black;
+                        border: 1px solid white;
+                        box-shadow: 0 0 3px white;
 
                     }
                 }
