@@ -23,7 +23,7 @@
                 <button (click)="toggleMute()" class="volume" [ngClass]="isMuted? 'muted' : ''">
                     <img src="assets/volume.png" alt="volume"/>
                 </button>
-                <input #videoVolume type="range" min="0" max="1" step="0.01" (input)="changeVolume()" [(ngModel)]="currentVolume">
+                <input #videoVolume class="volumeInput" type="range" min="0" max="1" step="0.01" (input)="changeVolume()" [(ngModel)]="currentVolume">
             </div>
         </div>
 
