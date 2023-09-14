@@ -127,6 +127,8 @@ export class VideoPlayerComponent {
           const video: HTMLVideoElement = this.videoPlayer.nativeElement;
           const volume: HTMLInputElement = this.videoVolume.nativeElement;
           video.volume = volume.valueAsNumber;
+          this.isMuted=false;
+          video.muted = false;
       }
   }
 }
