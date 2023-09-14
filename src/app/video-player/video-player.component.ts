@@ -1,4 +1,20 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'timeFormat'
+})
+export class TimeFormatPipe implements PipeTransform {
+
+  transform(time: number): string {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
+
+}
+
+
 
 @Component({
   selector: 'app-video-player',
@@ -79,6 +95,9 @@ export class VideoPlayerComponent {
       };
       video.ontimeupdate = () => {
         this.currentVideoTime = video.currentTime;
+        if (this.currentVideoTime==this.videoDuration) {
+          this.isPlaying = false;
+        }
       };
     }
   }

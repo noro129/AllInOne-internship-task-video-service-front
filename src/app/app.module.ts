@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { VideoPlayerComponent } from './video-player/video-player.component';
+import { TimeFormatPipe, VideoPlayerComponent } from './video-player/video-player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    TimeFormatPipe
   ],
   imports: [
     BrowserModule,
